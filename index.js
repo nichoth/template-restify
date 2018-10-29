@@ -15,7 +15,6 @@ server
     .pre(cors.preflight)
     .use(cors.actual)
     .use(pino)
-    .use()
     .use(plugins.queryParser({ mapParams: false }))
     .use(plugins.bodyParser())
 
