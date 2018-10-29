@@ -3,6 +3,7 @@ var { plugins } = restify
 var errs = require('restify-errors')
 var Pino = require('restify-pino-logger')
 var Cors = require('restify-cors-middleware')
+var helmet = require('helmet')
 
 var pino = Pino()
 var cors = Cors({
@@ -13,6 +14,7 @@ var cors = Cors({
 var server = restify.createServer()
 server
     .pre(cors.preflight)
+    .use(helmet())
     .use(cors.actual)
     .use(pino)
     .use(plugins.queryParser({ mapParams: false }))
